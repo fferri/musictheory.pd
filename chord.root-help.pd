@@ -1,0 +1,18 @@
+#N canvas 618 204 563 581 12;
+#X listbox 72 342 22 0 0 0 - - - 0;
+#X text 22 408 See also:;
+#X obj 148 437 chord.identify;
+#X msg 67 178 symbol Cmin7;
+#X obj 148 461 chord.invert;
+#X obj 23 437 chord.pitches;
+#X text 22 38 chord.root;
+#X text 22 88 Get the root pitch of a chord.;
+#X obj 72 318 chord.root;
+#X msg 95 217 symbol Cmin7/G;
+#X text 111 240 root refers to the chord tonic \, not the bass note;
+#X text 112 263 use chord.notes to get the bass note;
+#X obj 23 461 chord.notes;
+#X text 22 528 Copyright 2025 Federico Ferri (see LICENSE.txt);
+#X connect 3 0 8 0;
+#X connect 8 0 0 0;
+#X connect 9 0 8 0;
