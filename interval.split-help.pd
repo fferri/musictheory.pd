@@ -1,9 +1,6 @@
-#N canvas 618 204 563 581 12;
+#N canvas 671 217 563 518 12;
 #X text 22 408 See also:;
 #X msg 110 233 symbol M3;
-#X obj 23 509 interval.sub;
-#X obj 23 437 interval.add;
-#X obj 23 461 interval.complement;
 #X msg 50 150 symbol M10;
 #X msg 67 177 symbol m13;
 #X text 22 38 interval.split;
@@ -11,10 +8,10 @@
 #X obj 65 274 interval.split;
 #X listbox 65 318 20 0 0 0 - - - 0;
 #X msg 84 206 symbol P19;
-#X obj 23 485 interval.reduce;
-#X text 22 548 Copyright 2025 Federico Ferri (see LICENSE.txt);
-#X connect 1 0 9 0;
-#X connect 5 0 9 0;
-#X connect 6 0 9 0;
-#X connect 9 0 10 0;
-#X connect 11 0 9 0;
+#X text 22 478 Copyright 2025 Federico Ferri (see LICENSE.txt);
+#X obj 23 437 musictheory-objects;
+#X connect 1 0 6 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 0;
+#X connect 6 0 7 0;
+#X connect 8 0 6 0;

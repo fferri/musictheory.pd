@@ -1,4 +1,4 @@
-#N canvas 1191 212 569 575 12;
+#N canvas 671 213 569 525 12;
 #X obj 89 276 chord.identify;
 #X msg 324 185 list Eb3 G3 C4;
 #X listbox 89 300 22 0 0 0 - - - 0;
@@ -7,15 +7,12 @@
 #X text 293 232 works with chord inversions too;
 #X msg 83 162 list C4 Eb4 G4;
 #X text 22 408 See also:;
-#X obj 23 437 chord.pitches;
-#X obj 23 461 chord.notes;
-#X obj 23 485 chord.root;
-#X obj 148 437 chord.invert;
 #X msg 117 190 list C3 E3 G3 A3;
 #X text 22 88 Identify a chord from a list of notes. There can be multiple results (in a list).;
-#X text 22 528 Copyright 2025 Federico Ferri (see LICENSE.txt);
+#X text 22 478 Copyright 2025 Federico Ferri (see LICENSE.txt);
+#X obj 23 437 musictheory-objects;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 4 0 0 0;
 #X connect 6 0 0 0;
-#X connect 12 0 0 0;
+#X connect 8 0 0 0;
