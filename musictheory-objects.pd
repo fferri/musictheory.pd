@@ -34,3 +34,4 @@
 #X obj 36 584 scale.harmonize;
 #X text 33 33 musictheory.pd - music theory objects for pd;
 #X text 22 658 Copyright 2025 Federico Ferri (see LICENSE.txt);
+#X obj 156 584 scale.identify;
