@@ -31,5 +31,12 @@ end
 
 function note_to_midi:in_1_symbol(x)
     local note = mt.Note(x)
-    self:outlet(1, "float", {note.midi_note})
+    self:outlet(1, 'float', {note.midi_note})
+end
+
+function note_to_midi:in_1_list(atoms)
+    local l = {}
+    l[1] = mt.Note(atoms[1]).midi_note
+    for i = 2, #atoms do l[i] = atoms[i] end
+    self:outlet(1, 'list', l)
 end
