@@ -1,0 +1,11 @@
+#N canvas 261 497 450 300 12;
+#X obj 160 100 note.sequence.editor;
+#X msg 158 57 open;
+#X obj 55 100 note.sequence;
+#X msg 58 59 dump;
+#X obj 177 129 print EDITOR;
+#X connect 0 0 2 1;
+#X connect 0 0 4 0;
+#X connect 1 0 0 0;
+#X connect 2 1 0 0;
+#X connect 3 0 2 0;
