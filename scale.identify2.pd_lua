@@ -58,5 +58,5 @@ end
 
 function scale_identify2:in_1_reset(atoms)
     assert(#atoms == 0, 'invalid number of args')
-    self.cur_scales = 0
+    self.cur_scales = {}
 end
