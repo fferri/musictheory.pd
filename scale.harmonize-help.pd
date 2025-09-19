@@ -5,8 +5,6 @@
 #X obj 61 227 scale.harmonize C natural_minor;
 #X floatatom 61 186 5 0 0 0 - - - 0;
 #X listbox 61 257 7 0 0 0 - - - 0;
-#X msg 168 185 symbol C;
-#X msg 275 185 symbol major;
 #N canvas 1026 367 590 444 harmonize-chords 0;
 #X obj 97 112 expr $f1 \; $f1+2 \; $f1+4;
 #X obj 97 164 pack f f f;
@@ -39,7 +37,7 @@
 #X restore 346 310 pd harmonize-chords;
 #X text 22 478 Copyright 2025 Federico Ferri (see LICENSE.txt);
 #X obj 23 437 musictheory-objects;
+#X msg 168 185 set C major;
 #X connect 3 0 5 0;
 #X connect 4 0 3 0;
-#X connect 6 0 3 1;
-#X connect 7 0 3 2;
+#X connect 9 0 3 0;

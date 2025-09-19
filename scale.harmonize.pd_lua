@@ -19,7 +19,7 @@ mt = require 'musictheory'
 local scale_harmonize = pd.Class:new():register('scale.harmonize')
 
 function scale_harmonize:initialize(sel, atoms)
-    self.inlets = 3
+    self.inlets = 1
     self.outlets = 1
     if #atoms >= 1 then
         self.root_pitch = mt.PitchClass(atoms[1])
@@ -43,16 +43,9 @@ function scale_harmonize:in_1_float(x)
     end
 end
 
-function scale_harmonize:in_2_symbol(x)
-    self.root_pitch = mt.PitchClass(x)
-    if self.scale_name then
-        self.scale = mt.Scale(self.root_pitch, self.scale_name)
-    end
-end
-
-function scale_harmonize:in_3_symbol(x)
-    self.scale_name = x
-    if self.root_pitch then
-        self.scale = mt.Scale(self.root_pitch, self.scale_name)
-    end
+function scale_harmonize:in_1_set(atoms)
+    assert(#atoms == 2, 'invalid number of args')
+    self.root_pitch = mt.PitchClass(atoms[1])
+    self.scale_name = atoms[2]
+    self.scale = mt.Scale(self.root_pitch, self.scale_name)
 end
