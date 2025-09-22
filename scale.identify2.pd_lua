@@ -22,7 +22,11 @@ function scale_identify2:initialize(sel, atoms)
     self.inlets = 1
     self.outlets = 1
     self.cur_scales = {}
-    assert(#atoms <= 0, 'too many args')
+    if #atoms == 2 then
+        table.insert(self.cur_scales, mt.Scale(atoms[1], atoms[2]))
+    elseif #atoms ~= 0 then
+        error('too many args')
+    end
     return true
 end
 
@@ -32,25 +36,36 @@ end
 
 function scale_identify2:in_1_list(atoms)
     local notes = table.map(function(x) return mt.Note(x) end, atoms)
-    local new_scales = mt.Scale:identify(notes)
-    local function score(scale)
-        local witems = {}
-        local in_current = false
-        for _, note in ipairs(notes) do
-            witems[note] = 10
+
+    local old_scales = {}
+    for i, scale in ipairs(self.cur_scales) do
+        if scale:contains(notes) then
+            old_scales[scale] = i
         end
-        for _, cur_scale in ipairs(self.cur_scales) do
-            witems[cur_scale] = 1
-            in_current = in_current or cur_scale == scale
-        end
-        return scale:wpcp_score(witems) + (in_current and 100 or 0)
     end
-    table.sort(new_scales, function(a, b) return score(a) > score(b) end)
+
+    local new_scales = mt.Scale:identify(notes)
+    local b = #self.cur_scales + 2
+    for _, scale in ipairs(new_scales) do
+        local d
+        for _, old_scale in ipairs(self.cur_scales) do
+            local d1 = scale:distance(old_scale)
+            d = math.min(d or d1, d1)
+        end
+        old_scales[scale] = (old_scales[scale] or b) - 1 + d
+    end
+
+    local new_scales = {}
+    for scale in pairs(old_scales) do
+        table.insert(new_scales, scale)
+    end
+    table.sort(new_scales, function(a, b) return old_scales[a] < old_scales[b] end)
+
     local out = {}
     for _, scale in ipairs(new_scales) do
         table.insert(out, tostring(scale.root))
         table.insert(out, scale.recipe)
-        table.insert(out, score(scale))
+        table.insert(out, 0) --score(scale))
     end
     self:outlet(1, 'list', out)
     self.cur_scales = new_scales
