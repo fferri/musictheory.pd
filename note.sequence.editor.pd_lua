@@ -26,7 +26,6 @@ mt = require 'musictheory'
 
 local class = require 'middleclass'
 local json = require 'dkjson'
---local lanes = require 'lanes'.configure()
 local cqueues = require 'cqueues'
 local socket = require 'cqueues.socket'
 local http_server = require 'http.server'
@@ -71,7 +70,7 @@ function note_sequence_editor:initialize(sel, atoms)
             end,
             onerror = function(myserver, context, op, err, errno)
                 local msg = string.format('%s on %s failed: %s', op, context, err)
-                pd.error(msg)
+                self:error(msg)
             end,
         }
         assert(myserver:loop())
@@ -123,7 +122,17 @@ end
 
 function note_sequence_editor:in_1_open()
     if self.spawned_ui then
-        assert(self.ws:send(json.encode{'raise'}))
+        local ok, v = pcall(self.ws.send, self.ws, json.encode{'raise'})
+        if not ok then
+            if string.match(v, " send_frame: Broken pipe$") then
+                -- ui has quit? respawn
+                self.spawned_ui = false
+                self:in_1_open()
+            else
+                error(v)
+            end
+        end
+        assert(v)
     else
         run_async(ui_program, ui_port)
         self.spawned_ui = true
