@@ -52,8 +52,8 @@ end
 function note_sequence:in_1_add(atoms, notify)
     assert(#atoms >= 3, 'not enough args')
     assert(((#atoms - 3) % 2) == 0, 'keyword arguments must be even')
-    local note, time, duration = atoms[1], atoms[2], atoms[3]
-    local info = {}
+    local note, time = atoms[1], atoms[2]
+    local info = {duration = atoms[3]}
     for i = 4, #atoms, 2 do
         info[atoms[i]] = atoms[i + 1]
     end
