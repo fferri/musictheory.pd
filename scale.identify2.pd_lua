@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see https://www.gnu.org/licenses/.
 --]]
 
-arg = {}
-mt = require 'musictheory'
+local mt = require 'musictheory'
 
 local scale_identify2 = pd.Class:new():register('scale.identify2')
 

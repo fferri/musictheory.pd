@@ -21,8 +21,7 @@ This require several lua rocks:
  - lanes
 ]]--
 
-arg = {}
-mt = require 'musictheory'
+local mt = require 'musictheory'
 
 local class = require 'middleclass'
 local json = require 'dkjson'

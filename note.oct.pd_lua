@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see https://www.gnu.org/licenses/.
 --]]
 
-arg = {}
-mt = require 'musictheory'
+local mt = require 'musictheory'
 
 local note_oct = pd.Class:new():register('note.oct')
 
