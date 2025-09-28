@@ -111,15 +111,6 @@ function note_sequence:in_1_clear(atoms)
     self.seq:clear()
 end
 
-function note_sequence:in_1_dump(atoms)
-    assert(#atoms == 0, 'invalid number of args')
-    pd.post('--------------------------------------------------')
-    for _, note_info in ipairs(self.seq:get_notes()) do
-        pd.post('' .. note_info.time .. ' ' .. tostring(note_info.note) .. ' ' .. note_info.duration)
-    end
-    pd.post('--------------------------------------------------')
-end
-
 function note_sequence:in_2_list(atoms)
     local cmd = table.remove(atoms, 1)
     if cmd == 'add' then
