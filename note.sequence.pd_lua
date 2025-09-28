@@ -15,7 +15,6 @@ this program. If not, see https://www.gnu.org/licenses/.
 
 arg = {}
 mt = require 'musictheory'
-ol = require 'orderedlist'
 
 local note_sequence = pd.Class:new():register('note.sequence')
 
